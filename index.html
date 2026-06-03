@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,7 +98,7 @@
 
     /* Hero */
     .hero {
-      padding: 4rem 0 6rem;
+      padding: 4rem 0 4rem;
       text-align: center;
     }
 
@@ -373,9 +374,9 @@
       border: none;
     }
 
-    /* Letter Section */
+    /* Poem / Letter Section */
     .letter-section {
-      padding: 4rem 0;
+      padding: 2rem 0 4rem;
     }
 
     .letter-header {
@@ -399,46 +400,29 @@
 
     .letter-content {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      line-height: 1.9;
+      font-size: 1.35rem;
+      line-height: 2;
     }
 
-    .letter-content .salutation {
-      font-size: 1.375rem;
-      font-weight: 500;
-      margin-bottom: 2rem;
-    }
-
-    .letter-content p {
-      margin-bottom: 1.5rem;
-      text-indent: 2rem;
-    }
-
-    .letter-content p:first-of-type {
-      text-indent: 0;
-    }
-
-    .letter-content .closing {
-      text-indent: 0;
-      margin-top: 3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .letter-content .signature {
-      text-indent: 0;
-      font-style: italic;
-      font-weight: 500;
-    }
-
-    .letter-quote {
-      font-size: 1.5rem;
-      font-style: italic;
+    /* Poetry-specific formatting */
+    .poem-layout {
       text-align: center;
+    }
+
+    .poem-layout p {
+      text-indent: 0 !important;
+      margin-bottom: 2.5rem;
+      font-style: italic;
+    }
+
+    .poem-layout .signature {
+      margin-top: 4rem;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 1.125rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
       color: var(--primary);
-      margin: 3rem 0;
-      padding: 2rem;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
     }
 
     /* Footer */
@@ -471,7 +455,6 @@
   </style>
 </head>
 <body>
-  <!-- Header -->
   <header>
     <div class="container header-inner">
       <div class="logo">
@@ -482,21 +465,19 @@
         </div>
         <span class="logo-text">For You, My Love</span>
       </div>
-      <a href="#letter" class="nav-link">Read My Letter</a>
+      <a href="#poem" class="nav-link">Read My Poem</a>
     </div>
   </header>
 
   <main class="container">
-    <!-- Hero -->
     <section class="hero">
       <h1>Happy Monthsary, My Love</h1>
-      <p>These songs remind me of you. Press play and let me tell you how I feel.</p>
+      <p>Press play on our song, and read what's in my heart below.</p>
     </section>
 
-    <!-- Audio Player -->
     <section class="player-section">
-      <h2 class="section-title">Our Songs</h2>
-      
+      <h2 class="section-title">Our Song</h2>
+       
       <div class="tracklist" id="tracklist">
         <div class="track active" data-index="0">
           <div class="track-info">
@@ -507,52 +488,19 @@
               </div>
             </div>
             <div class="track-details">
-              <h3>The Way You Look Tonight</h3>
-              <p>Our First Dance</p>
+              <h3 id="display-title">The Way You Look Tonight</h3>
+              <p id="display-subtitle">Our Story</p>
             </div>
           </div>
-          <span class="track-duration">4:32</span>
-        </div>
-        
-        <div class="track" data-index="1">
-          <div class="track-info">
-            <div class="track-number">
-              <span>2</span>
-              <div class="playing-indicator">
-                <span></span><span></span><span></span>
-              </div>
-            </div>
-            <div class="track-details">
-              <h3>Can't Help Falling in Love</h3>
-              <p>For Every Quiet Moment</p>
-            </div>
-          </div>
-          <span class="track-duration">3:48</span>
-        </div>
-        
-        <div class="track" data-index="2">
-          <div class="track-info">
-            <div class="track-number">
-              <span>3</span>
-              <div class="playing-indicator">
-                <span></span><span></span><span></span>
-              </div>
-            </div>
-            <div class="track-details">
-              <h3>A Thousand Years</h3>
-              <p>Because It&apos;s True</p>
-            </div>
-          </div>
-          <span class="track-duration">5:15</span>
+          <span class="track-duration" id="display-duration">4:32</span>
         </div>
       </div>
 
-      <!-- Now Playing -->
       <div class="now-playing">
         <div class="now-playing-header">
           <div class="now-playing-title">
             <h3 id="current-title">The Way You Look Tonight</h3>
-            <p id="current-artist">Our First Dance</p>
+            <p id="current-artist">Our Story</p>
           </div>
         </div>
 
@@ -574,7 +522,7 @@
                 <line x1="5" y1="19" x2="5" y2="5"></line>
               </svg>
             </button>
-            
+             
             <button class="play-btn" id="play-btn" aria-label="Play">
               <svg id="play-icon" viewBox="0 0 24 24">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -584,7 +532,7 @@
                 <rect x="14" y="4" width="4" height="16"></rect>
               </svg>
             </button>
-            
+             
             <button class="control-btn" id="next-btn" aria-label="Next track">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polygon points="5 4 15 12 5 20 5 4"></polygon>
@@ -613,35 +561,33 @@
       <audio id="audio" preload="metadata"></audio>
     </section>
 
-    <!-- Letter Section -->
-    <section class="letter-section" id="letter">
+    <section class="letter-section" id="poem">
       <div class="letter-header">
-        <h2>A Letter for You</h2>
+        <h2>For You</h2>
         <div class="letter-divider"></div>
       </div>
 
-      <div class="letter-content">
-        <p class="salutation">My Dearest,</p>
-        
-        <p>Another month has passed, and yet it feels like just yesterday when our story began. Time moves strangely when you are in love &mdash; the days feel full and unhurried, but when I look back, I am amazed at how much has grown between us.</p>
-        
-        <p>I made this little playlist for you because words sometimes fail me. When I hear these songs, I think of you. I think of the way you laugh, the way you listen, the way you make even ordinary moments feel extraordinary. Each melody carries a piece of how I feel &mdash; the quiet joy, the deep gratitude, the kind of love that settles into your bones and makes you feel at home.</p>
-        
-        <div class="letter-quote">
-          &ldquo;In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.&rdquo;
-        </div>
-        
-        <p>Thank you for choosing me, again and again, day after day. Thank you for your patience when I am difficult, your kindness when I need it most, and your presence that makes everything better. Loving you is the easiest thing I have ever done, and being loved by you is the greatest gift I have ever received.</p>
-        
-        <p>Here is to another month &mdash; to more laughter, more adventures, more quiet nights and loud mornings. To more of us, exactly as we are, growing together in ways we cannot yet imagine.</p>
-        
-        <p class="closing">With all my heart,</p>
+      <div class="letter-content poem-layout">
+        <p>
+          ,<br>
+          Through the ups and downs,<br>
+          My heart will remain true.<br>
+	  Even when we are wearing crowns,
+	  I'll be here for you.<br>
+        </p>
+         
+        <p>
+          No matter the situation,<br>
+          I'll do all that I can.<br>
+          Against all temptation,<br>
+          To hold onto your hand.
+        </p>
+         
         <p class="signature">Yours, always</p>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer>
     <div class="container">
       <p>Made with all my heart, just for you.</p>
@@ -649,25 +595,14 @@
   </footer>
 
   <script>
-    // Track data
+    // Single Track data configuration
     const tracks = [
       {
-        title: "The Way You Look Tonight",
-        artist: "Our First Dance",
-        duration: "4:32",
-        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-      },
-      {
-        title: "Can't Help Falling in Love",
-        artist: "For Every Quiet Moment",
-        duration: "3:48",
-        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
-      },
-      {
-        title: "A Thousand Years",
-        artist: "Because It's True",
-        duration: "5:15",
-        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+        title: "When You Say Nothing At All",
+        artist: "Me",
+        duration: "4:16",
+        // Replace the URL below with your actual audio file link
+        src: "nothing at all real final.mp3"
       }
     ];
 
@@ -684,6 +619,9 @@
     const durationEl = document.getElementById('duration');
     const currentTitle = document.getElementById('current-title');
     const currentArtist = document.getElementById('current-artist');
+    const displayTitle = document.getElementById('display-title');
+    const displaySubtitle = document.getElementById('display-subtitle');
+    const displayDuration = document.getElementById('display-duration');
     const volumeSlider = document.getElementById('volume-slider');
     const volumeBtn = document.getElementById('volume-btn');
     const volumeIcon = document.getElementById('volume-icon');
@@ -699,21 +637,23 @@
       audio.volume = volumeSlider.value;
     }
 
-    // Load track
+    // Load track properties dynamically
     function loadTrack(index) {
       const track = tracks[index];
       audio.src = track.src;
       currentTitle.textContent = track.title;
       currentArtist.textContent = track.artist;
+      displayTitle.textContent = track.title;
+      displaySubtitle.textContent = track.artist;
+      displayDuration.textContent = track.duration;
       
-      // Update active track in list
       trackElements.forEach((el, i) => {
         el.classList.toggle('active', i === index);
         el.classList.remove('playing');
       });
     }
 
-    // Format time
+    // Format remaining or current play time
     function formatTime(seconds) {
       if (isNaN(seconds)) return '0:00';
       const mins = Math.floor(seconds / 60);
@@ -721,7 +661,7 @@
       return `${mins}:${secs.toString().padStart(2, '0')}`;
     }
 
-    // Play/Pause
+    // Play/Pause Action
     function togglePlay() {
       if (isPlaying) {
         audio.pause();
@@ -730,7 +670,7 @@
       }
     }
 
-    // Update play state
+    // Audio Event Hooks
     audio.addEventListener('play', () => {
       isPlaying = true;
       playIcon.style.display = 'none';
@@ -745,51 +685,47 @@
       trackElements[currentTrackIndex].classList.remove('playing');
     });
 
-    // Update progress
     audio.addEventListener('timeupdate', () => {
       const progress = (audio.currentTime / audio.duration) * 100;
       progressFill.style.width = `${progress}%`;
       currentTimeEl.textContent = formatTime(audio.currentTime);
     });
 
-    // Update duration when loaded
     audio.addEventListener('loadedmetadata', () => {
       durationEl.textContent = formatTime(audio.duration);
     });
 
-    // Track ended
     audio.addEventListener('ended', () => {
-      nextTrack();
+      // Single track loops back gracefully on finish
+      audio.currentTime = 0;
+      audio.play();
     });
 
-    // Progress bar click
     progressBar.addEventListener('click', (e) => {
       const rect = progressBar.getBoundingClientRect();
       const percent = (e.clientX - rect.left) / rect.width;
       audio.currentTime = percent * audio.duration;
     });
 
-    // Previous track
+    // Handle single track index looping safely
     function prevTrack() {
       currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
       loadTrack(currentTrackIndex);
       if (isPlaying) audio.play();
     }
 
-    // Next track
     function nextTrack() {
       currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
       loadTrack(currentTrackIndex);
       if (isPlaying) audio.play();
     }
 
-    // Volume control
+    // Volume Slider Mechanics
     volumeSlider.addEventListener('input', (e) => {
       audio.volume = e.target.value;
       updateVolumeIcon();
     });
 
-    // Toggle mute
     function toggleMute() {
       audio.muted = !audio.muted;
       updateVolumeIcon();
@@ -805,7 +741,6 @@
       }
     }
 
-    // Track click handlers
     trackElements.forEach((el, index) => {
       el.addEventListener('click', () => {
         currentTrackIndex = index;
@@ -814,13 +749,12 @@
       });
     });
 
-    // Event listeners
     playBtn.addEventListener('click', togglePlay);
     prevBtn.addEventListener('click', prevTrack);
     nextBtn.addEventListener('click', nextTrack);
     volumeBtn.addEventListener('click', toggleMute);
 
-    // Keyboard shortcuts
+    // Document Spacebar shortcut fallback
     document.addEventListener('keydown', (e) => {
       if (e.code === 'Space' && e.target === document.body) {
         e.preventDefault();
@@ -828,10 +762,9 @@
       }
     });
 
-    // Initialize player
     init();
   </script>
 </body>
 </html>
 
-
+```
