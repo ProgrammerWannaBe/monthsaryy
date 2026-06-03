@@ -1,0 +1,904 @@
+Drafts
+
+Now I have the design inspiration and understand the codebase. I'll create an elegant earth-tone audio player with:
+
+    Warm cream background (#F5F0E8 or similar)
+    Dark brown/charcoal text
+    Olive green accents (#5C6B4D or similar)
+    Beautiful serif typography for the letter section
+    Clean, minimalist audio player
+
+Let me update the theme and build the page:
+
+Now I need to update the theme inline section to include the serif font and update the dark mode. Let me also create the audio player component and the page:
+
+Now let me create the header component and the main page:
+
+Your minimalist audio player is complete! I've built a single-page web app with:
+
+    Warm earth-tone palette: Cream background (oklch(0.96 0.01 85)), dark charcoal text, and olive green accents for controls and interactive elements
+    Header: Clean header with a music note logo and "Earthy Sounds" branding, plus navigation to the letter section
+    Interactive tracklist: Three tracks with hover states, animated playing indicator (pulsing bars), and click-to-play functionality
+    Modern audio player: Custom-styled HTML5 audio with progress bar, play/pause, skip controls, volume slider with mute toggle, and time display
+    Beautiful typography section: Uses Cormorant Garamond serif font for an elegant, literary feel in the long letter—complete with a dramatic opening quote and thoughtful prose about the nature of listening
+
+The design follows a smart-casual aesthetic with generous whitespace, subtle borders, and smooth transitions throughout.
+3:10 PM
+
+it is for a love monthsary
+6:20 PM
+
+Now I'll update the content to make it romantic and perfect for a monthsary celebration:
+
+Now let me update the letter section to be a romantic monthsary letter:
+
+I've transformed the audio player into a romantic monthsary gift. The changes include:
+
+    Header: Now features a heart icon and the title "For You, My Love" with navigation to "Read My Letter"
+    Hero: Changed to "Happy Monthsary, My Love" with a romantic subtitle
+    Tracklist: Renamed to "Our Songs" with romantic track titles like "The Way You Look Tonight," "Can't Help Falling in Love," and "A Thousand Years" with sweet subtitles
+    Letter: Completely rewritten as a heartfelt love letter expressing gratitude, admiration, and devotion for a monthsary celebration
+    Footer: Updated to "Made with all my heart, just for you"
+
+The warm cream and olive green palette creates an intimate, cozy atmosphere perfect for sharing something personal and meaningful.
+6:20 PM
+
+can you just give me on html file with all the code
+6:26 PM
+
+The user wants a single HTML file with all the code embedded - no React, no Next.js, just a standalone HTML file with CSS and JavaScript inline. I'll create a complete, self-contained HTML file with the audio player, tracklist, and love letter for their monthsary.
+
+Done! I've created a single, self-contained HTML file at /public/monthsary.html with everything embedded:
+
+    Styling: All CSS is inline in a <style> tag with the warm cream background, olive green accents, and beautiful typography
+    Fonts: Google Fonts (Inter for UI, Cormorant Garamond for the letter) loaded via CDN
+    Audio Player: Fully functional with play/pause, track skipping, progress bar seeking, volume control, and animated playing indicators
+    Romantic Content: The tracklist has love song titles, and the letter is a heartfelt monthsary message
+    Interactive: Click tracks to play them, spacebar toggles play/pause, smooth transitions throughout
+
+You can access it at /monthsary.html or download the file directly. It works completely standalone without any server or build process needed.
+6:26 PM
+Drop files here to add as attachments
+
+feat: add new monthsary page with styled audio player and interactive elements
+1 file changed
++835
++835
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Monthsary, My Love</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --background: #F5F0E6;
+      --foreground: #3D3629;
+      --card: #FAF8F4;
+      --muted: #A89F91;
+      --primary: #5C6B4D;
+      --primary-foreground: #FAF8F4;
+      --border: #E5DFD4;
+      --radius: 0.5rem;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(245, 240, 230, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 64px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-icon svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--primary-foreground);
+    }
+
+    .logo-text {
+      font-size: 1.125rem;
+      font-weight: 500;
+      letter-spacing: -0.025em;
+    }
+
+    .nav-link {
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--foreground);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 4rem 0 6rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 300;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.5rem;
+      text-wrap: balance;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      color: var(--muted);
+      max-width: 28rem;
+      margin: 0 auto;
+    }
+
+    /* Audio Player Section */
+    .player-section {
+      background-color: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .section-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    /* Tracklist */
+    .tracklist {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .track {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background-color 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .track:hover {
+      background-color: var(--background);
+    }
+
+    .track.active {
+      background-color: var(--background);
+      border-color: var(--primary);
+    }
+
+    .track-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .track-number {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .playing-indicator {
+      display: none;
+      align-items: flex-end;
+      gap: 2px;
+      height: 16px;
+    }
+
+    .track.active.playing .track-number span {
+      display: none;
+    }
+
+    .track.active.playing .playing-indicator {
+      display: flex;
+    }
+
+    .playing-indicator span {
+      width: 3px;
+      background-color: var(--primary);
+      animation: bounce 0.6s ease-in-out infinite;
+    }
+
+    .playing-indicator span:nth-child(1) { height: 8px; animation-delay: 0s; }
+    .playing-indicator span:nth-child(2) { height: 12px; animation-delay: 0.15s; }
+    .playing-indicator span:nth-child(3) { height: 6px; animation-delay: 0.3s; }
+
+    @keyframes bounce {
+      0%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.5); }
+    }
+
+    .track-details h3 {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.125rem;
+    }
+
+    .track-details p {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    .track-duration {
+      font-size: 0.875rem;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Now Playing */
+    .now-playing {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+    }
+
+    .now-playing-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .now-playing-title h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .now-playing-title p {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      margin-bottom: 1rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background-color: var(--border);
+      border-radius: 3px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: var(--primary);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    .progress-times {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .playback-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .control-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .control-btn:hover {
+      color: var(--foreground);
+    }
+
+    .control-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .play-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .play-btn:active {
+      transform: scale(0.95);
+    }
+
+    .play-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--primary-foreground);
+    }
+
+    /* Volume */
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .volume-slider {
+      width: 80px;
+      height: 4px;
+      -webkit-appearance: none;
+      background: var(--border);
+      border-radius: 2px;
+      outline: none;
+    }
+
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 12px;
+      height: 12px;
+      background: var(--primary);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .volume-slider::-moz-range-thumb {
+      width: 12px;
+      height: 12px;
+      background: var(--primary);
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+    }
+
+    /* Letter Section */
+    .letter-section {
+      padding: 4rem 0;
+    }
+
+    .letter-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .letter-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .letter-divider {
+      width: 60px;
+      height: 1px;
+      background-color: var(--primary);
+      margin: 1.5rem auto;
+    }
+
+    .letter-content {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      line-height: 1.9;
+    }
+
+    .letter-content .salutation {
+      font-size: 1.375rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    .letter-content p {
+      margin-bottom: 1.5rem;
+      text-indent: 2rem;
+    }
+
+    .letter-content p:first-of-type {
+      text-indent: 0;
+    }
+
+    .letter-content .closing {
+      text-indent: 0;
+      margin-top: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .letter-content .signature {
+      text-indent: 0;
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .letter-quote {
+      font-size: 1.5rem;
+      font-style: italic;
+      text-align: center;
+      color: var(--primary);
+      margin: 3rem 0;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .volume-control {
+        display: none;
+      }
+
+      .player-section {
+        padding: 1.5rem;
+      }
+
+      .track {
+        padding: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
+        <span class="logo-text">For You, My Love</span>
+      </div>
+      <a href="#letter" class="nav-link">Read My Letter</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Happy Monthsary, My Love</h1>
+      <p>These songs remind me of you. Press play and let me tell you how I feel.</p>
+    </section>
+
+    <!-- Audio Player -->
+    <section class="player-section">
+      <h2 class="section-title">Our Songs</h2>
+      
+      <div class="tracklist" id="tracklist">
+        <div class="track active" data-index="0">
+          <div class="track-info">
+            <div class="track-number">
+              <span>1</span>
+              <div class="playing-indicator">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="track-details">
+              <h3>The Way You Look Tonight</h3>
+              <p>Our First Dance</p>
+            </div>
+          </div>
+          <span class="track-duration">4:32</span>
+        </div>
+        
+        <div class="track" data-index="1">
+          <div class="track-info">
+            <div class="track-number">
+              <span>2</span>
+              <div class="playing-indicator">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="track-details">
+              <h3>Can't Help Falling in Love</h3>
+              <p>For Every Quiet Moment</p>
+            </div>
+          </div>
+          <span class="track-duration">3:48</span>
+        </div>
+        
+        <div class="track" data-index="2">
+          <div class="track-info">
+            <div class="track-number">
+              <span>3</span>
+              <div class="playing-indicator">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="track-details">
+              <h3>A Thousand Years</h3>
+              <p>Because It&apos;s True</p>
+            </div>
+          </div>
+          <span class="track-duration">5:15</span>
+        </div>
+      </div>
+
+      <!-- Now Playing -->
+      <div class="now-playing">
+        <div class="now-playing-header">
+          <div class="now-playing-title">
+            <h3 id="current-title">The Way You Look Tonight</h3>
+            <p id="current-artist">Our First Dance</p>
+          </div>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-bar" id="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <div class="progress-times">
+            <span id="current-time">0:00</span>
+            <span id="duration">0:00</span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="playback-controls">
+            <button class="control-btn" id="prev-btn" aria-label="Previous track">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                <line x1="5" y1="19" x2="5" y2="5"></line>
+              </svg>
+            </button>
+            
+            <button class="play-btn" id="play-btn" aria-label="Play">
+              <svg id="play-icon" viewBox="0 0 24 24">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              <svg id="pause-icon" viewBox="0 0 24 24" style="display: none;">
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+              </svg>
+            </button>
+            
+            <button class="control-btn" id="next-btn" aria-label="Next track">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                <line x1="19" y1="5" x2="19" y2="19"></line>
+              </svg>
+            </button>
+          </div>
+
+          <div class="volume-control">
+            <button class="control-btn" id="volume-btn" aria-label="Toggle mute">
+              <svg id="volume-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+              </svg>
+              <svg id="mute-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+              </svg>
+            </button>
+            <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.1" value="0.7">
+          </div>
+        </div>
+      </div>
+
+      <audio id="audio" preload="metadata"></audio>
+    </section>
+
+    <!-- Letter Section -->
+    <section class="letter-section" id="letter">
+      <div class="letter-header">
+        <h2>A Letter for You</h2>
+        <div class="letter-divider"></div>
+      </div>
+
+      <div class="letter-content">
+        <p class="salutation">My Dearest,</p>
+        
+        <p>Another month has passed, and yet it feels like just yesterday when our story began. Time moves strangely when you are in love &mdash; the days feel full and unhurried, but when I look back, I am amazed at how much has grown between us.</p>
+        
+        <p>I made this little playlist for you because words sometimes fail me. When I hear these songs, I think of you. I think of the way you laugh, the way you listen, the way you make even ordinary moments feel extraordinary. Each melody carries a piece of how I feel &mdash; the quiet joy, the deep gratitude, the kind of love that settles into your bones and makes you feel at home.</p>
+        
+        <div class="letter-quote">
+          &ldquo;In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.&rdquo;
+        </div>
+        
+        <p>Thank you for choosing me, again and again, day after day. Thank you for your patience when I am difficult, your kindness when I need it most, and your presence that makes everything better. Loving you is the easiest thing I have ever done, and being loved by you is the greatest gift I have ever received.</p>
+        
+        <p>Here is to another month &mdash; to more laughter, more adventures, more quiet nights and loud mornings. To more of us, exactly as we are, growing together in ways we cannot yet imagine.</p>
+        
+        <p class="closing">With all my heart,</p>
+        <p class="signature">Yours, always</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>Made with all my heart, just for you.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Track data
+    const tracks = [
+      {
+        title: "The Way You Look Tonight",
+        artist: "Our First Dance",
+        duration: "4:32",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+      },
+      {
+        title: "Can't Help Falling in Love",
+        artist: "For Every Quiet Moment",
+        duration: "3:48",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
+      },
+      {
+        title: "A Thousand Years",
+        artist: "Because It's True",
+        duration: "5:15",
+        src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
+      }
+    ];
+
+    // DOM Elements
+    const audio = document.getElementById('audio');
+    const playBtn = document.getElementById('play-btn');
+    const playIcon = document.getElementById('play-icon');
+    const pauseIcon = document.getElementById('pause-icon');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const progressFill = document.getElementById('progress-fill');
+    const currentTimeEl = document.getElementById('current-time');
+    const durationEl = document.getElementById('duration');
+    const currentTitle = document.getElementById('current-title');
+    const currentArtist = document.getElementById('current-artist');
+    const volumeSlider = document.getElementById('volume-slider');
+    const volumeBtn = document.getElementById('volume-btn');
+    const volumeIcon = document.getElementById('volume-icon');
+    const muteIcon = document.getElementById('mute-icon');
+    const trackElements = document.querySelectorAll('.track');
+
+    let currentTrackIndex = 0;
+    let isPlaying = false;
+
+    // Initialize
+    function init() {
+      loadTrack(currentTrackIndex);
+      audio.volume = volumeSlider.value;
+    }
+
+    // Load track
+    function loadTrack(index) {
+      const track = tracks[index];
+      audio.src = track.src;
+      currentTitle.textContent = track.title;
+      currentArtist.textContent = track.artist;
+      
+      // Update active track in list
+      trackElements.forEach((el, i) => {
+        el.classList.toggle('active', i === index);
+        el.classList.remove('playing');
+      });
+    }
+
+    // Format time
+    function formatTime(seconds) {
+      if (isNaN(seconds)) return '0:00';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    // Play/Pause
+    function togglePlay() {
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        audio.play();
+      }
+    }
+
+    // Update play state
+    audio.addEventListener('play', () => {
+      isPlaying = true;
+      playIcon.style.display = 'none';
+      pauseIcon.style.display = 'block';
+      trackElements[currentTrackIndex].classList.add('playing');
+    });
+
+    audio.addEventListener('pause', () => {
+      isPlaying = false;
+      playIcon.style.display = 'block';
+      pauseIcon.style.display = 'none';
+      trackElements[currentTrackIndex].classList.remove('playing');
+    });
+
+    // Update progress
+    audio.addEventListener('timeupdate', () => {
+      const progress = (audio.currentTime / audio.duration) * 100;
+      progressFill.style.width = `${progress}%`;
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+    });
+
+    // Update duration when loaded
+    audio.addEventListener('loadedmetadata', () => {
+      durationEl.textContent = formatTime(audio.duration);
+    });
+
+    // Track ended
+    audio.addEventListener('ended', () => {
+      nextTrack();
+    });
+
+    // Progress bar click
+    progressBar.addEventListener('click', (e) => {
+      const rect = progressBar.getBoundingClientRect();
+      const percent = (e.clientX - rect.left) / rect.width;
+      audio.currentTime = percent * audio.duration;
+    });
+
+    // Previous track
+    function prevTrack() {
+      currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+      loadTrack(currentTrackIndex);
+      if (isPlaying) audio.play();
+    }
+
+    // Next track
+    function nextTrack() {
+      currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+      loadTrack(currentTrackIndex);
+      if (isPlaying) audio.play();
+    }
+
+    // Volume control
+    volumeSlider.addEventListener('input', (e) => {
+      audio.volume = e.target.value;
+      updateVolumeIcon();
+    });
+
+    // Toggle mute
+    function toggleMute() {
+      audio.muted = !audio.muted;
+      updateVolumeIcon();
+    }
+
+    function updateVolumeIcon() {
+      if (audio.muted || audio.volume === 0) {
+        volumeIcon.style.display = 'none';
+        muteIcon.style.display = 'block';
+      } else {
+        volumeIcon.style.display = 'block';
+        muteIcon.style.display = 'none';
+      }
+    }
+
+    // Track click handlers
+    trackElements.forEach((el, index) => {
+      el.addEventListener('click', () => {
+        currentTrackIndex = index;
+        loadTrack(currentTrackIndex);
+        audio.play();
+      });
+    });
+
+    // Event listeners
+    playBtn.addEventListener('click', togglePlay);
+    prevBtn.addEventListener('click', prevTrack);
+    nextBtn.addEventListener('click', nextTrack);
+    volumeBtn.addEventListener('click', toggleMute);
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space' && e.target === document.body) {
+        e.preventDefault();
+        togglePlay();
+      }
+    });
+
+    // Initialize player
+    init();
+  </script>
+</body>
+</html>
+
+
